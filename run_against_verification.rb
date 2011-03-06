@@ -3,7 +3,7 @@ Encoding.default_external = 'UTF-8'
 
 require_relative 'lib/bayes'
 
-bayes = Bayes.new
+bayes = Bayes.new(false)
 
 Dir.glob('data/*.txt') do |fn|
   fn =~ /data\/(.*)\.txt/; topic = $1
@@ -17,12 +17,14 @@ end
 Dir.glob('verify/*.txt') do |fn|
   fn =~ /verify\/(.*)_(.*)\.txt/; topic = $1; sample = $2;
   File.open(fn) do |f|
-    guessed_topic = bayes.classify(f.readlines.join(' '))
+    txt = f.readlines.join(' ')
+    guessed_topic = bayes.classify(txt)
     puts "Sample: #{topic}_#{sample} -> #{guessed_topic}"
     if topic.to_sym == guessed_topic.to_sym
       @correct +=1
     else
       @missed +=1
+      p bayes.classifiers(txt)
     end
   end
 end
