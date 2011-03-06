@@ -1,0 +1,5 @@
+dress
+color
+hat
+style
+green
