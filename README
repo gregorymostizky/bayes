@@ -1,1 +1,11 @@
-This file was created by IntelliJ IDEA 10.0.2 for binding GitHub repository
+Simple NaiveBayes inspired document classifier
+
+Files in data folder define different topics - filename is the name of the topic and content is topic sample
+The sample for each topic is based on wikipedia entries (first paragraph mostly) for relevant entries
+
+Files in verify folder represent test documents, with each file name including the name of assumed topic.
+
+Running 'run_against_verification.rb' will init the classifier with sample data, and then test vs. all files in verify.
+Tested with Ruby 1.9.2 - no idea if it works in any other version
+
+No text processing is applied - no stemming, NLP or even a downcase.
